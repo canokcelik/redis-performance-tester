@@ -1,0 +1,353 @@
+apiVersion: v1
+items:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/canokcelik/redis-performance-tester.git
+      openshift.io/generated-by: OpenShiftWebConsole
+    creationTimestamp: "2020-10-16T21:04:18Z"
+    labels:
+      app: redis-performance-tester-git
+      app.kubernetes.io/component: redis-performance-tester-git
+      app.kubernetes.io/instance: redis-performance-tester-git
+      app.kubernetes.io/name: python
+      app.kubernetes.io/part-of: redis-perf-tester
+      app.openshift.io/runtime: python
+      app.openshift.io/runtime-version: "3.6"
+    managedFields:
+    - apiVersion: build.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:app.openshift.io/vcs-ref: {}
+            f:app.openshift.io/vcs-uri: {}
+            f:openshift.io/generated-by: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:app.kubernetes.io/component: {}
+            f:app.kubernetes.io/instance: {}
+            f:app.kubernetes.io/name: {}
+            f:app.kubernetes.io/part-of: {}
+            f:app.openshift.io/runtime: {}
+            f:app.openshift.io/runtime-version: {}
+        f:spec:
+          f:output:
+            f:to:
+              .: {}
+              f:kind: {}
+              f:name: {}
+          f:runPolicy: {}
+          f:source:
+            f:contextDir: {}
+            f:git:
+              .: {}
+              f:uri: {}
+            f:type: {}
+          f:strategy:
+            f:sourceStrategy:
+              .: {}
+              f:from:
+                .: {}
+                f:kind: {}
+                f:name: {}
+                f:namespace: {}
+            f:type: {}
+      manager: Mozilla
+      operation: Update
+      time: "2020-10-16T21:04:18Z"
+    - apiVersion: build.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          f:triggers: {}
+        f:status:
+          f:lastVersion: {}
+      manager: openshift-apiserver
+      operation: Update
+      time: "2020-10-16T22:40:44Z"
+    name: redis-performance-tester-git
+    namespace: workspace
+    resourceVersion: "891583"
+    selfLink: /apis/build.openshift.io/v1/namespaces/workspace/buildconfigs/redis-performance-tester-git
+    uid: 3e2b3463-4910-4029-94ec-a60d53346936
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: redis-performance-tester-git:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: /
+      git:
+        uri: https://github.com/canokcelik/redis-performance-tester.git
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: python:3.6
+          namespace: openshift
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - generic:
+        secretReference:
+          name: redis-performance-tester-git-generic-webhook-secret
+      type: Generic
+    - github:
+        secretReference:
+          name: redis-performance-tester-git-github-webhook-secret
+      type: GitHub
+    - imageChange:
+        lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/python@sha256:d8881affb7666e9f1e5b718b27db89c41ab3b8ebeb12510772bf221ee74895db
+      type: ImageChange
+    - type: ConfigChange
+  status:
+    lastVersion: 7
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: master
+      app.openshift.io/vcs-uri: https://github.com/canokcelik/redis-performance-tester.git
+      openshift.io/generated-by: OpenShiftWebConsole
+    creationTimestamp: "2020-10-16T21:04:18Z"
+    generation: 10
+    labels:
+      app: redis-performance-tester-git
+      app.kubernetes.io/component: redis-performance-tester-git
+      app.kubernetes.io/instance: redis-performance-tester-git
+      app.kubernetes.io/name: python
+      app.kubernetes.io/part-of: redis-perf-tester
+      app.openshift.io/runtime: python
+      app.openshift.io/runtime-version: "3.6"
+    managedFields:
+    - apiVersion: apps.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:app.openshift.io/vcs-ref: {}
+            f:app.openshift.io/vcs-uri: {}
+            f:openshift.io/generated-by: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:app.kubernetes.io/component: {}
+            f:app.kubernetes.io/instance: {}
+            f:app.kubernetes.io/name: {}
+            f:app.kubernetes.io/part-of: {}
+            f:app.openshift.io/runtime: {}
+            f:app.openshift.io/runtime-version: {}
+        f:spec:
+          f:replicas: {}
+          f:selector:
+            .: {}
+            f:app: {}
+            f:deploymentconfig: {}
+          f:strategy:
+            f:activeDeadlineSeconds: {}
+            f:rollingParams:
+              .: {}
+              f:intervalSeconds: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+              f:timeoutSeconds: {}
+              f:updatePeriodSeconds: {}
+            f:type: {}
+          f:template:
+            .: {}
+            f:metadata:
+              .: {}
+              f:creationTimestamp: {}
+              f:labels:
+                .: {}
+                f:app: {}
+                f:deploymentconfig: {}
+            f:spec:
+              .: {}
+              f:containers:
+                .: {}
+                k:{"name":"redis-performance-tester-git"}:
+                  .: {}
+                  f:env:
+                    .: {}
+                    k:{"name":"REDIS_HOST"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"REDIS_PASSWORD"}:
+                      .: {}
+                      f:name: {}
+                      f:valueFrom:
+                        .: {}
+                        f:secretKeyRef:
+                          .: {}
+                          f:key: {}
+                          f:name: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:ports:
+                    .: {}
+                    k:{"containerPort":8080,"protocol":"TCP"}:
+                      .: {}
+                      f:containerPort: {}
+                      f:protocol: {}
+                  f:resources: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+      manager: Mozilla
+      operation: Update
+      time: "2020-10-16T22:32:18Z"
+    - apiVersion: apps.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          f:template:
+            f:spec:
+              f:containers:
+                k:{"name":"redis-performance-tester-git"}:
+                  f:image: {}
+          f:triggers: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:details:
+            .: {}
+            f:causes: {}
+            f:message: {}
+          f:latestVersion: {}
+          f:observedGeneration: {}
+          f:replicas: {}
+          f:unavailableReplicas: {}
+          f:updatedReplicas: {}
+      manager: openshift-controller-manager
+      operation: Update
+      time: "2020-10-16T22:45:02Z"
+    name: redis-performance-tester-git
+    namespace: workspace
+    resourceVersion: "892681"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/workspace/deploymentconfigs/redis-performance-tester-git
+    uid: 30518f87-f08e-4b1d-9500-74f67a7b32e8
+  spec:
+    replicas: 3
+    revisionHistoryLimit: 10
+    selector:
+      app: redis-performance-tester-git
+      deploymentconfig: redis-performance-tester-git
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: redis-performance-tester-git
+          deploymentconfig: redis-performance-tester-git
+      spec:
+        containers:
+        - env:
+          - name: REDIS_HOST
+            value: redis
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: redis
+          image: image-registry.openshift-image-registry.svc:5000/workspace/redis-performance-tester-git@sha256:ab50f8e5d88fcf34f0b1e6591a8bf1abc8a737dbd90eb08ed35fb278bee5d9be
+          imagePullPolicy: Always
+          name: redis-performance-tester-git
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - redis-performance-tester-git
+        from:
+          kind: ImageStreamTag
+          name: redis-performance-tester-git:latest
+          namespace: workspace
+        lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/workspace/redis-performance-tester-git@sha256:ab50f8e5d88fcf34f0b1e6591a8bf1abc8a737dbd90eb08ed35fb278bee5d9be
+      type: ImageChange
+    - type: ConfigChange
+  status:
+    availableReplicas: 0
+    conditions:
+    - lastTransitionTime: "2020-10-16T22:41:54Z"
+      lastUpdateTime: "2020-10-16T22:41:57Z"
+      message: replication controller "redis-performance-tester-git-7" successfully
+        rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2020-10-16T22:42:18Z"
+      lastUpdateTime: "2020-10-16T22:42:18Z"
+      message: Deployment config does not have minimum availability.
+      status: "False"
+      type: Available
+    details:
+      causes:
+      - imageTrigger:
+          from:
+            kind: DockerImage
+            name: image-registry.openshift-image-registry.svc:5000/workspace/redis-performance-tester-git@sha256:ab50f8e5d88fcf34f0b1e6591a8bf1abc8a737dbd90eb08ed35fb278bee5d9be
+        type: ImageChange
+      message: image change
+    latestVersion: 7
+    observedGeneration: 10
+    replicas: 3
+    unavailableReplicas: 3
+    updatedReplicas: 3
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
